@@ -3,6 +3,17 @@ class Person:
         self.name = name
         self.age = age
 
+    @property
+    def age(self):
+        return self.__age
+    @age.setter
+    def age(self, age):
+        if age >= 0:
+            self.__age = age
+        else:
+            print(f'Incorrect Age')
+
+
 
 class Student(Person):
     def __init__(self, name, age, course, group, avg_grade):
@@ -11,7 +22,7 @@ class Student(Person):
         self.group = group
         self.avgrade = avg_grade
 
-    def _show_info(self):
+    def show_info(self):
         print(f'Student: ', end='\n'
                                 f'Name: {self.name} '
                                 f'Age: {self.age} '
@@ -24,7 +35,7 @@ class Teacher(Person):
         super().__init__(name, age)
         self.discipline = discipline
 
-    def _show_info(self):
+    def show_info(self):
         print(f'Teacher: ', end='\n'
 
                                 f'Name: {self.name} '
@@ -36,7 +47,7 @@ class Subject:
     def __init__(self, name):
         self.name = name
 
-    def _show_info(self):
+    def show_info(self):
         print(f'Subject: {self.name}')
 
 
@@ -45,10 +56,10 @@ class Department:
         self.name = name
         self.subject = subject
 
-    def _show_info(self):
+    def show_info(self):
         print(f'Department name: {self.name}')
         for subject in self.subject:
-            subject._show_info()
+            subject.show_info()
             print()
 
 
@@ -63,13 +74,13 @@ class Academy(Department):
     def show_info(self):
         print(f'Academy name: ', self.name)
         for students in self.students:
-            students._show_info()
+            students.show_info()
             print()
         for teachers in self.teachers:
-            teachers._show_info()
+            teachers.show_info()
             print()
         for departments in self.departments:
-            departments._show_info()
+            departments.show_info()
 
 
 subjects_cs = [Subject('Data protection'),
